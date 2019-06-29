@@ -74,52 +74,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Hexo-github搭建个人博客"><a href="#Hexo-github搭建个人博客" class="headerlink" title="##Hexo+github搭建个人博客"></a>##Hexo+github搭建个人博客</h2><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>首先需要安装好node.js、Git、markdownpad2（用于写博客）</p>
+        <h2 id="Hexo-github搭建个人博客"><a href="#Hexo-github搭建个人博客" class="headerlink" title="##Hexo+github搭建个人博客##"></a>##Hexo+github搭建个人博客##</h2><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>首先需要安装好node.js、Git、markdownpad2（用于写博客）</p>
 <p><img src="https://github.com/WASD4959/picture/blob/master/12686502-39a1db9bd31bb082.png?raw=true" alt="node-v4.4.0-x64.msi"><br><img src="https://github.com/WASD4959/picture/blob/master/12686502-2e8b2a524d29fc8b.png?raw=true" alt="Git-1.9.5-preview20150319.exe"><br><img src="https://github.com/WASD4959/picture/blob/master/12686502-36054c5e7cd16aea.png?raw=true" alt="markdownpad2-setup.exe"><br>（安装nodejs时不要忘了配置环境变量）</p>
 <hr>
-<p>###hexo安装<br>打开cmd，进入NodeJS的安装目录，利用 npm 命令安装hexo</p>
+<p>###hexo安装###<br>打开cmd，进入NodeJS的安装目录，利用 npm 命令安装hexo</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
 
 <p>安装过程中可能会遇到各种问题，在此不一一阐述，可以通过百度等搜索引擎解决。</p>
 <hr>
-<p>###开始搭建博客<br>接下来执行</p>
+<p>###开始搭建博客###<br>接下来执行</p>
 <p><code>mkdir blog &amp;&amp; cd blog   //&quot;blog&quot;为博客的名称，可以自取，此处为创建博客并进入博客的根目录</code><br><code>hexo init</code><br><code>npm install //安装依赖包</code><br><code>hexo g</code><br><code>hexo s</code><br>此时访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 即可看到你的博客，但这只是本地的，我们还需要将其上传到网上。</p>
 <hr>
-<p>###部署博客到github<br>访问 <a href="https://github.com" target="_blank" rel="noopener">https://github.com</a> 注册一个全新的账户（或者你有的话直接登录），然后创建仓库，注意仓库名为：用户名.github.io<br>接下来进入你的blog目录，打开_config.yml<br>在文件的底部，即deploy: 下面，修改repository为你的仓库地址。例：<br><code>deploy:</code><br><code>type: git</code><br><code>repository: https://github.com/WASD4959/WASD4959.github.io.git</code><br><code>branch: master</code><br>(如果文件底部没有这些的话可以自己写入添加，注意在：之后要加空格区分开来，不然可能会出错)<br>接下来在你的blog目录打开cmd，执行下面几步操作：<br><code>npm install hexo-deployer-git --save （这命令是为了解决hexo新版本的部署问题)</code><br><code>hexo g 回车 （这是重新生成blog）</code><br><code>hexo d 回车 （这是将本地blog部署到github的仓库）</code><br>在最后，命令行可能会提示输入你的邮箱名和用户名，根据提示的命令进行输入，然后顺着一顿操作，博客就差不多搭好了，在浏览器中输入 用户名.github.io 就能看到你的博客。</p>
+<p>###部署博客到github###<br>访问 <a href="https://github.com" target="_blank" rel="noopener">https://github.com</a> 注册一个全新的账户（或者你有的话直接登录），然后创建仓库，注意仓库名为：用户名.github.io<br>接下来进入你的blog目录，打开_config.yml<br>在文件的底部，即deploy: 下面，修改repository为你的仓库地址。例：<br><code>deploy:</code><br><code>type: git</code><br><code>repository: https://github.com/WASD4959/WASD4959.github.io.git</code><br><code>branch: master</code><br>(如果文件底部没有这些的话可以自己写入添加，注意在：之后要加空格区分开来，不然可能会出错)<br>接下来在你的blog目录打开cmd，执行下面几步操作：<br><code>npm install hexo-deployer-git --save （这命令是为了解决hexo新版本的部署问题)</code><br><code>hexo g 回车 （这是重新生成blog）</code><br><code>hexo d 回车 （这是将本地blog部署到github的仓库）</code><br>在最后，命令行可能会提示输入你的邮箱名和用户名，根据提示的命令进行输入，然后顺着一顿操作，博客就差不多搭好了，在浏览器中输入 用户名.github.io 就能看到你的博客。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/29/Hexo+github搭建个人博客/" data-id="cjxgz6xax0000wcrnxyl0b43i" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-first blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/26/first blog/" class="article-date">
-  <time datetime="2019-06-26T02:22:11.604Z" itemprop="datePublished">2019-06-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world!"></a>hello world!</h2><p><strong>It is my first blog</strong>!</p>
-<p><img src="https://github.com/WASD4959/picture/blob/master/20180513000003_TtdYr.jpeg?raw=true" alt="hello"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/26/first blog/" data-id="cjxgz6xb50001wcrn21mx0n00" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/29/Hexo+github搭建个人博客/" data-id="cjxgzcl4k00002wrnur5fbz37" class="article-share-link">Share</a>
       
       
     </footer>
@@ -161,10 +132,6 @@
         
           <li>
             <a href="/2019/06/29/Hexo+github搭建个人博客/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/26/first blog/">(no title)</a>
           </li>
         
       </ul>
