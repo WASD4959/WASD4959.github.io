@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/5.png?raw=true">
 <meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/6.png?raw=true">
 <meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/7.png?raw=true">
-<meta property="og:updated_time" content="2019-07-04T05:33:53.939Z">
+<meta property="og:updated_time" content="2019-07-04T05:36:11.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WASD4959">
 <meta name="twitter:description" content="ROP(Return-oriented Programming) ROP3步走 寻找漏洞点 寻找偏移量 填入目标函数地址  这里拿前几天做的题举例">
@@ -98,7 +98,7 @@
 <h3 id="这里拿前几天做的题举例"><a href="#这里拿前几天做的题举例" class="headerlink" title="这里拿前几天做的题举例"></a>这里拿前几天做的题举例<a id="more"></a></h3><p>首先打开main.c看看程序是怎样的<br><img src="https://github.com/WASD4959/picture/blob/rop/1.png?raw=true" alt>  </p>
 <p>发现程序中存在漏洞，我们要通过sh函数得到我们想要的而gets可以无限输入。接下来通过gdb寻找偏移量，打开gdb后输入<strong>pattc 30</strong>可以得到一串字符串，然后将其复制。<br><img src="https://github.com/WASD4959/picture/blob/rop/2.png?raw=true" alt>  </p>
 <p>之后运行到gets那一步将先前的字符串粘贴其中<br><img src="https://github.com/WASD4959/picture/blob/rop/3.png?raw=true" alt>  </p>
-<p>之后便能得到offset(即偏移量)<br><img src="https://github.com/WASD4959/picture/blob/rop/4.jpg?raw=true" alt>  </p>
+<p>之后便能通过patto得到offset(即偏移量)<br><img src="https://github.com/WASD4959/picture/blob/rop/4.jpg?raw=true" alt>  </p>
 <p>得到偏移量后退出gdb,输入objdump -d main &gt; obj,然后 cat obj 来找到sh函数的地址。<br><img src="https://github.com/WASD4959/picture/blob/rop/5.png?raw=true" alt>  </p>
 <p>找到地址为<strong>0x4005b6</strong>,下一步就是编写python脚本<br><img src="https://github.com/WASD4959/picture/blob/rop/6.png?raw=true" alt>  </p>
 <p>python运行一下就能得到shell<br><img src="https://github.com/WASD4959/picture/blob/rop/7.png?raw=true" alt></p>
@@ -106,7 +106,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/04/rop/" data-id="cjxo8ja4x0001o0rnanuci289" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/04/rop/" data-id="cjxo8lvkc00010crnkxmb3twx" class="article-share-link">Share</a>
       
       
     </footer>
