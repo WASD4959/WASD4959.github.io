@@ -7,13 +7,25 @@
   
   <title>WASD4959</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="ROP(Return-oriented Programming) ROP3步走 寻找漏洞点 寻找偏移量 填入目标函数地址  这里拿前几天做的题举例">
+<meta property="og:type" content="article">
 <meta property="og:title" content="WASD4959">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/07/04/rop/index.html">
 <meta property="og:site_name" content="WASD4959">
+<meta property="og:description" content="ROP(Return-oriented Programming) ROP3步走 寻找漏洞点 寻找偏移量 填入目标函数地址  这里拿前几天做的题举例">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/1.png?raw=true">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/2.png?raw=true">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/3.png?raw=true">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/4.jpg?raw=true">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/5.png?raw=true">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/6.png?raw=true">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/7.png?raw=true">
+<meta property="og:updated_time" content="2019-07-04T05:33:53.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WASD4959">
+<meta name="twitter:description" content="ROP(Return-oriented Programming) ROP3步走 寻找漏洞点 寻找偏移量 填入目标函数地址  这里拿前几天做的题举例">
+<meta name="twitter:image" content="https://github.com/WASD4959/picture/blob/rop/1.png?raw=true">
   
     <link rel="alternate" href="/atom.xml" title="WASD4959" type="application/atom+xml">
   
@@ -64,9 +76,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-rop" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-rop" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/04/rop/" class="article-date">
   <time datetime="2019-07-04T04:37:19.855Z" itemprop="datePublished">2019-07-04</time>
@@ -85,12 +95,14 @@
 <li>寻找偏移量</li>
 <li>填入目标函数地址</li>
 </ul>
-<h3 id="这里拿前几天做的题举例"><a href="#这里拿前几天做的题举例" class="headerlink" title="这里拿前几天做的题举例"></a>这里拿前几天做的题举例
-        
-          <p class="article-more-link">
-            <a href="/2019/07/04/rop/#more">Read More</a>
-          </p>
-        
+<h3 id="这里拿前几天做的题举例"><a href="#这里拿前几天做的题举例" class="headerlink" title="这里拿前几天做的题举例"></a>这里拿前几天做的题举例<a id="more"></a></h3><p>首先打开main.c看看程序是怎样的<br><img src="https://github.com/WASD4959/picture/blob/rop/1.png?raw=true" alt>  </p>
+<p>发现程序中存在漏洞，我们要通过sh函数得到我们想要的而gets可以无限输入。接下来通过gdb寻找偏移量，打开gdb后输入<strong>pattc 30</strong>可以得到一串字符串，然后将其复制。<br><img src="https://github.com/WASD4959/picture/blob/rop/2.png?raw=true" alt>  </p>
+<p>之后运行到gets那一步将先前的字符串粘贴其中<br><img src="https://github.com/WASD4959/picture/blob/rop/3.png?raw=true" alt>  </p>
+<p>之后便能得到offset(即偏移量)<br><img src="https://github.com/WASD4959/picture/blob/rop/4.jpg?raw=true" alt>  </p>
+<p>得到偏移量后退出gdb,输入objdump -d main &gt; obj,然后 cat obj 来找到sh函数的地址。<br><img src="https://github.com/WASD4959/picture/blob/rop/5.png?raw=true" alt>  </p>
+<p>找到地址为<strong>0x4005b6</strong>,下一步就是编写python脚本<br><img src="https://github.com/WASD4959/picture/blob/rop/6.png?raw=true" alt>  </p>
+<p>python运行一下就能得到shell<br><img src="https://github.com/WASD4959/picture/blob/rop/7.png?raw=true" alt></p>
+
       
     </div>
     <footer class="article-footer">
@@ -100,76 +112,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Linux入门" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/29/Linux入门/" class="article-date">
-  <time datetime="2019-06-29T05:52:36.083Z" itemprop="datePublished">2019-06-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Linux-入门"><a href="#Linux-入门" class="headerlink" title="Linux 入门"></a>Linux 入门</h1><hr>
-<p>Linux是一套免费使用和自由传播的类Unix操作系统，是一个基于POSIX和UNIX的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的UNIX工具软件、应用程序和网络协议。它支持32位和64位硬件,Linux继承了Unix以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。<br>Linux操作系统诞生于1991 年年10 月5 日（这是第一次正式向外公布时间）。Linux存在着许多不同的Linux版本，但它们都使用了Linux内核。Linux可安装在各种计算机硬件设备中，比如手机、平板电脑、路由器、视频游戏控制台、台式计算机、大型机和超级计算机。
-        
-          <p class="article-more-link">
-            <a href="/2019/06/29/Linux入门/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/29/Linux入门/" data-id="cjxo8ja540002o0rn80z78i2w" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
+  
+    <a href="/2019/06/29/Linux入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
   
 </article>
-
-
-  
-    <article id="post-Hexo+github搭建个人博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/29/Hexo+github搭建个人博客/" class="article-date">
-  <time datetime="2019-06-29T03:37:02.155Z" itemprop="datePublished">2019-06-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Hexo-github搭建个人博客"><a href="#Hexo-github搭建个人博客" class="headerlink" title="Hexo+github搭建个人博客"></a>Hexo+github搭建个人博客</h2><hr>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>首先需要安装好node.js、Git、markdownpad2（用于写博客）</p>
-<p><img src="https://github.com/WASD4959/picture/blob/master/12686502-39a1db9bd31bb082.png?raw=true" alt="node-v4.4.0-x64.msi"><br><img src="https://github.com/WASD4959/picture/blob/master/12686502-2e8b2a524d29fc8b.png?raw=true" alt="Git-1.9.5-preview20150319.exe"><br><img src="https://github.com/WASD4959/picture/blob/master/12686502-36054c5e7cd16aea.png?raw=true" alt="markdownpad2-setup.exe"><br>（安装nodejs时不要忘了配置环境变量）
-        
-          <p class="article-more-link">
-            <a href="/2019/06/29/Hexo+github搭建个人博客/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/29/Hexo+github搭建个人博客/" data-id="cjxo8ja4q0000o0rn01mzu69m" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
