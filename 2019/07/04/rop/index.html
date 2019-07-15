@@ -86,9 +86,9 @@
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
     translation: {
-      copy_button: 'Copy',
-      copy_success: 'Copied',
-      copy_failure: 'Copy failed'
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
     }
   };
 </script>
@@ -97,7 +97,7 @@
 
   <meta name="description" content="ROP(Return-oriented Programming) ROP3步走 寻找漏洞点 寻找偏移量 填入目标函数地址  这里拿前几天做的题举例">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WASD4959">
+<meta property="og:title" content="ROP初步了解">
 <meta property="og:url" content="http://yoursite.com/2019/07/04/rop/index.html">
 <meta property="og:site_name" content="WASD4959">
 <meta property="og:description" content="ROP(Return-oriented Programming) ROP3步走 寻找漏洞点 寻找偏移量 填入目标函数地址  这里拿前几天做的题举例">
@@ -109,9 +109,9 @@
 <meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/5.png?raw=true">
 <meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/6.png?raw=true">
 <meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/7.png?raw=true">
-<meta property="og:updated_time" content="2019-07-04T05:36:11.101Z">
+<meta property="og:updated_time" content="2019-07-15T07:11:04.503Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WASD4959">
+<meta name="twitter:title" content="ROP初步了解">
 <meta name="twitter:description" content="ROP(Return-oriented Programming) ROP3步走 寻找漏洞点 寻找偏移量 填入目标函数地址  这里拿前几天做的题举例">
 <meta name="twitter:image" content="https://github.com/WASD4959/picture/blob/rop/1.png?raw=true">
 
@@ -131,7 +131,7 @@
   };
 </script>
 
-  <title> | WASD4959</title>
+  <title>ROP初步了解 | WASD4959</title>
   
 
 
@@ -203,7 +203,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="Navigationsleiste an/ausschalten">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -232,7 +232,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
 
   </li>
         
@@ -250,7 +250,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">3</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv<span class="badge">3</span></a>
 
   </li>
 
@@ -315,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">ROP初步了解
 
               
             
@@ -334,20 +334,30 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-07-04 12:37:19 / Modified: 13:36:11" itemprop="dateCreated datePublished" datetime="2019-07-04T12:37:19+08:00">2019-07-04</time>
+              <time title="Erstellt: 2019-07-04 12:37:19" itemprop="dateCreated datePublished" datetime="2019-07-04T12:37:19+08:00">2019-07-04</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-07-15 15:11:04" itemprop="dateModified" datetime="2019-07-15T15:11:04+08:00">2019-07-15</time>
+              </span>
             
           
 
@@ -385,8 +395,7 @@
       
 
       
-        <hr>
-<h1 id="ROP-Return-oriented-Programming"><a href="#ROP-Return-oriented-Programming" class="headerlink" title="ROP(Return-oriented Programming)"></a>ROP(Return-oriented Programming)</h1><hr>
+        <h1 id="ROP-Return-oriented-Programming"><a href="#ROP-Return-oriented-Programming" class="headerlink" title="ROP(Return-oriented Programming)"></a>ROP(Return-oriented Programming)</h1><hr>
 <h2 id="ROP3步走"><a href="#ROP3步走" class="headerlink" title="ROP3步走"></a>ROP3步走</h2><ul>
 <li>寻找漏洞点</li>
 <li>寻找偏移量</li>
@@ -487,10 +496,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -513,7 +522,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">3</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -583,7 +592,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 
@@ -591,7 +600,7 @@
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
 
 
 
