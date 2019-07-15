@@ -95,13 +95,25 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="WASD4959">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="ROP(Return-oriented Programming) ROP3步走 寻找漏洞点 寻找偏移量 填入目标函数地址  这里拿前几天做的题举例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROP初步了解">
+<meta property="og:url" content="http://yoursite.com/2019/07/04/rop初步了解/index.html">
 <meta property="og:site_name" content="WASD4959">
+<meta property="og:description" content="ROP(Return-oriented Programming) ROP3步走 寻找漏洞点 寻找偏移量 填入目标函数地址  这里拿前几天做的题举例">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/1.png?raw=true">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/2.png?raw=true">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/3.png?raw=true">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/4.jpg?raw=true">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/5.png?raw=true">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/6.png?raw=true">
+<meta property="og:image" content="https://github.com/WASD4959/picture/blob/rop/7.png?raw=true">
+<meta property="og:updated_time" content="2019-07-15T07:11:04.503Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WASD4959">
+<meta name="twitter:title" content="ROP初步了解">
+<meta name="twitter:description" content="ROP(Return-oriented Programming) ROP3步走 寻找漏洞点 寻找偏移量 填入目标函数地址  这里拿前几天做的题举例">
+<meta name="twitter:image" content="https://github.com/WASD4959/picture/blob/rop/1.png?raw=true">
 
 
 
@@ -109,7 +121,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/04/rop初步了解/">
 
 
 
@@ -119,7 +131,7 @@
   };
 </script>
 
-  <title>WASD4959</title>
+  <title>ROP初步了解 | WASD4959</title>
   
 
 
@@ -167,8 +179,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -210,7 +221,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -270,9 +281,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -304,10 +315,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/04/rop初步了解/" class="post-title-link" itemprop="url">ROP初步了解</a>
+          <h1 class="post-title" itemprop="name headline">ROP初步了解
+
               
             
           </h1>
@@ -386,29 +395,27 @@
       
 
       
-        
-          <h1 id="ROP-Return-oriented-Programming"><a href="#ROP-Return-oriented-Programming" class="headerlink" title="ROP(Return-oriented Programming)"></a>ROP(Return-oriented Programming)</h1><hr>
+        <h1 id="ROP-Return-oriented-Programming"><a href="#ROP-Return-oriented-Programming" class="headerlink" title="ROP(Return-oriented Programming)"></a>ROP(Return-oriented Programming)</h1><hr>
 <h2 id="ROP3步走"><a href="#ROP3步走" class="headerlink" title="ROP3步走"></a>ROP3步走</h2><ul>
 <li>寻找漏洞点</li>
 <li>寻找偏移量</li>
 <li>填入目标函数地址</li>
 </ul>
-<h3 id="这里拿前几天做的题举例"><a href="#这里拿前几天做的题举例" class="headerlink" title="这里拿前几天做的题举例"></a>这里拿前几天做的题举例
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/04/rop初步了解/#more" rel="contents">
-                Weiterlesen &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+<h3 id="这里拿前几天做的题举例"><a href="#这里拿前几天做的题举例" class="headerlink" title="这里拿前几天做的题举例"></a>这里拿前几天做的题举例<a id="more"></a></h3><p>首先打开main.c看看程序是怎样的<br><img src="https://github.com/WASD4959/picture/blob/rop/1.png?raw=true" alt>  </p>
+<p>发现程序中存在漏洞，我们要通过sh函数得到我们想要的而gets可以无限输入。接下来通过gdb寻找偏移量，打开gdb后输入<strong>pattc 30</strong>可以得到一串字符串，然后将其复制。<br><img src="https://github.com/WASD4959/picture/blob/rop/2.png?raw=true" alt>  </p>
+<p>之后运行到gets那一步将先前的字符串粘贴其中<br><img src="https://github.com/WASD4959/picture/blob/rop/3.png?raw=true" alt>  </p>
+<p>之后便能通过patto得到offset(即偏移量)<br><img src="https://github.com/WASD4959/picture/blob/rop/4.jpg?raw=true" alt>  </p>
+<p>得到偏移量后退出gdb,输入objdump -d main &gt; obj,然后 cat obj 来找到sh函数的地址。<br><img src="https://github.com/WASD4959/picture/blob/rop/5.png?raw=true" alt>  </p>
+<p>找到地址为<strong>0x4005b6</strong>,下一步就是编写python脚本<br><img src="https://github.com/WASD4959/picture/blob/rop/6.png?raw=true" alt>  </p>
+<p>python运行一下就能得到shell<br><img src="https://github.com/WASD4959/picture/blob/rop/7.png?raw=true" alt></p>
+
       
-    </h3></div>
+    </div>
 
     
 
+    
+      
     
 
     
@@ -428,179 +435,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/29/Hexo+github搭建个人博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WASD">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/1.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WASD4959">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/29/Hexo+github搭建个人博客/" class="post-title-link" itemprop="url">Hexo+github搭建个人博客</a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Erstellt: 2019-06-29 11:37:02" itemprop="dateCreated datePublished" datetime="2019-06-29T11:37:02+08:00">2019-06-29</time>
-            </span>
-          
-
-          
+              <a href="/2019/06/29/Hexo+github搭建个人博客/" rel="next" title="Hexo+github搭建个人博客">
+                <i class="fa fa-chevron-left"></i> Hexo+github搭建个人博客
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Bearbeitet am</span>
-                
-                <time title="Geändert am: 2019-07-15 15:14:07" itemprop="dateModified" datetime="2019-07-15T15:14:07+08:00">2019-07-15</time>
-              </span>
-            
-          
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>首先需要安装好node.js、Git、markdownpad2（用于写博客）</p>
-<p><img src="https://github.com/WASD4959/picture/blob/master/12686502-39a1db9bd31bb082.png?raw=true" alt="node-v4.4.0-x64.msi"><br><img src="https://github.com/WASD4959/picture/blob/master/12686502-2e8b2a524d29fc8b.png?raw=true" alt="Git-1.9.5-preview20150319.exe"><br><img src="https://github.com/WASD4959/picture/blob/master/12686502-36054c5e7cd16aea.png?raw=true" alt="markdownpad2-setup.exe"><br>（安装nodejs时不要忘了配置环境变量）
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/29/Hexo+github搭建个人博客/#more" rel="contents">
-                Weiterlesen &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -610,14 +466,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -637,8 +494,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -682,6 +548,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ROP-Return-oriented-Programming"><span class="nav-number">1.</span> <span class="nav-text">ROP(Return-oriented Programming)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ROP3步走"><span class="nav-number">1.1.</span> <span class="nav-text">ROP3步走</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#这里拿前几天做的题举例"><span class="nav-number">1.1.1.</span> <span class="nav-text">这里拿前几天做的题举例</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -809,6 +692,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.2.0"></script>
 
@@ -822,6 +709,8 @@
 
   
 
+
+  
 
 
   
